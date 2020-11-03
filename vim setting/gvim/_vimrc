@@ -9,7 +9,16 @@ if &diffopt !~# 'internal'
   set diffexpr=MyDiff()
 endif
 
-set autoindent
+" Make std tab
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set smartindent
+
+" Turn off all sound
+set belloff=all
+
 set guifont=Consolas:h12
 set guioptions-=T
 set encoding=utf8
@@ -53,7 +62,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/powerline/fonts'
 Plug 'lifepillar/vim-solarized8'
-Plug 'klen/python-mode'
+"Plug 'klen/python-mode'
 " Plug 'vim-scripts/CSApprox'
 "Plug 'https://github.com/tpope/vim-unimpaired'
 Plug 'valloric/youcompleteme'
