@@ -30,6 +30,14 @@ set noundofile
 set guifont=DejaVu_Sans_Mono_for_PowerLine:h12:cRUSSIAN:qDRAFT
 set background=dark
 
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchLib = 'D:\PortableApps\gVimPortable\App\vim\vim80\libxkbswitch32.dll'
+let g:XkbSwitchIMappings = ['ru']
+let g:XkbSwitchAssistNKeymap = 1    " for commands r and f
+let g:XkbSwitchAssistSKeymap = 1    " for search lines
+
+inoremap <C-c> <esc>
+
 " Make std moves
 nnoremap k gk
 nnoremap gk k
@@ -42,6 +50,8 @@ let mapleader = "-"
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " <leader>sv using vimrc as source
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+"set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
 " Std backspace behavior
 " set backspace=indent,eol,start
@@ -62,8 +72,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/powerline/fonts'
 Plug 'lifepillar/vim-solarized8'
+Plug 'https://github.com/DeXP/xkb-switch-win'
+Plug 'https://github.com/lyokha/vim-xkbswitch'
 "Plug 'klen/python-mode'
-" Plug 'vim-scripts/CSApprox'
+"Plug 'vim-scripts/CSApprox'
 "Plug 'https://github.com/tpope/vim-unimpaired'
 Plug 'valloric/youcompleteme'
 "Plug 'JamshedVesuna/vim-markdown-preview'
@@ -109,6 +121,14 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+"if $DISPLAY == "" 
+"	let g:XkbSwitchEnabled = 0
+"else
+"	let g:XkbSwitchEnabled = 1
+"    let g:XkbSwitchLib = 'D:\PortableApps\gVimPortable\Data\libxkbswitch32.dll'
+"	let g:XkbSwitchIMappings = ['ru']
+"endif 
 
 function MyDiff()
   let opt = '-a --binary '
