@@ -1,5 +1,7 @@
-" Vim with all enhancements
 source $VIMRUNTIME/vimrc_example.vim
+" Vim with all enhancements
+set langmenu=en_US
+let $LANG = 'en_US'
 
 " Use the internal diff if available.
 " Otherwise use the special 'diffexpr' for Windows.
@@ -7,7 +9,16 @@ if &diffopt !~# 'internal'
   set diffexpr=MyDiff()
 endif
 
-set autoindent
+" Make std tab
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set smartindent
+
+" Turn off all sound
+set belloff=all
+
 set guifont=Consolas:h12
 set guioptions-=T
 set encoding=utf8
@@ -18,16 +29,43 @@ set nowritebackup
 set noundofile
 set guifont=DejaVu_Sans_Mono_for_PowerLine:h12:cRUSSIAN:qDRAFT
 set background=dark
+
+let g:XkbSwitchEnabled = 1
+"let g:XkbSwitchLib = 'D:\PortableApps\gVimPortable\App\vim\vim80\libxkbswitch32.dll'
+"let g:XkbSwitchLib = '/usr/local/lib/libg3kbswitch.so'
+let g:XkbSwitchIMappings = ['ru']
+let g:XkbSwitchAssistNKeymap = 1    " for commands r and f
+let g:XkbSwitchAssistSKeymap = 1    " for search lines
+
+inoremap <C-c> <esc>
+
+" Make std moves
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+
+" Set a leader key
+let mapleader = "-"
+" <leader>ev starts vsplit editing vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" <leader>sv using vimrc as source
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+"set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+" Std backspace behavior
+" set backspace=indent,eol,start
 " set backup
 " set backupdir='d:\Programs\Vim\backups\'
 
-if empty(glob($VIMRUNTIME . '\autoload\plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+"if empty(glob($VIMRUNTIME . '\autoload\plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
 
-call plug#begin('d:\Programs\Vim\plugged')
+call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/vim-nerdtree/nerdtree'
 Plug 'https://github.com/iamcco/markdown-preview.nvim'
 Plug 'https://github.com/vim-nerdtree/nerdtree'
@@ -35,6 +73,19 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'https://github.com/powerline/fonts'
 Plug 'lifepillar/vim-solarized8'
+Plug 'https://github.com/grwlf/xkb-switch'
+Plug 'https://github.com/lyokha/vim-xkbswitch'
+Plug 'https://github.com/jamessan/vim-gnupg'
+"Plug 'klen/python-mode'
+"Plug 'vim-scripts/CSApprox'
+"Plug 'https://github.com/tpope/vim-unimpaired'
+"Plug 'valloric/youcompleteme'
+"Plug 'JamshedVesuna/vim-markdown-preview'
+"Plug 'iamcco/markdown-preview.vim'
+Plug 'https://github.com/easymotion/vim-easymotion'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'xolox/vim-colorscheme-switcher'
+"Plug 'xolox/vim-misc'
 call plug#end()
 colo solarized8_flat
 map <C-n> :NERDTreeToggle<CR>
@@ -73,6 +124,14 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+"if $DISPLAY == "" 
+"	let g:XkbSwitchEnabled = 0
+"else
+"	let g:XkbSwitchEnabled = 1
+"    let g:XkbSwitchLib = 'D:\PortableApps\gVimPortable\Data\libxkbswitch32.dll'
+"	let g:XkbSwitchIMappings = ['ru']
+"endif 
+
 function MyDiff()
   let opt = '-a --binary '
   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
@@ -105,4 +164,3 @@ function MyDiff()
     let &shellxquote=l:shxq_sav
   endif
 endfunction
-
