@@ -16,6 +16,8 @@ set smarttab
 set expandtab
 set smartindent
 
+set textwidth=0
+
 " Turn off all sound
 set belloff=all
 
@@ -33,7 +35,7 @@ set background=dark
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchLib = 'D:\PortableApps\gVimPortable\App\vim\vim80\libxkbswitch32.dll'
 let g:XkbSwitchIMappings = ['ru']
-let g:XkbSwitchAssistNKeymap = 1    " for commands r and f
+let g:XkbSwitchAssistNKeymap = 0    " for commands r and f
 let g:XkbSwitchAssistSKeymap = 1    " for search lines
 
 inoremap <C-c> <esc>
@@ -66,7 +68,9 @@ endif
 
 call plug#begin($VIMRUNTIME . '\plugged')
 Plug 'https://github.com/vim-nerdtree/nerdtree'
-Plug 'https://github.com/iamcco/markdown-preview.nvim'
+"Plug 'https://github.com/iamcco/markdown-preview.nvim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'mzlogin/vim-markdown-toc'
 Plug 'https://github.com/vim-nerdtree/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -81,6 +85,12 @@ Plug 'valloric/youcompleteme'
 "Plug 'JamshedVesuna/vim-markdown-preview'
 "Plug 'iamcco/markdown-preview.vim'
 Plug 'https://github.com/easymotion/vim-easymotion'
+Plug 'https://github.com/jamessan/vim-gnupg'
+
+Plug 'https://github.com/vim-latex/vim-latex'
+Plug 'https://github.com/sheerun/vim-polyglot'
+Plug 'https://github.com/nathanaelkane/vim-indent-guides'
+Plug 'https://github.com/ollykel/v-vim'
 "Plug 'flazz/vim-colorschemes'
 "Plug 'xolox/vim-colorscheme-switcher'
 "Plug 'xolox/vim-misc'
@@ -122,6 +132,21 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
+" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
+filetype plugin on
+
+" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
+" can be called correctly.
+set shellslash
+
+" OPTIONAL: This enables automatic indentation as you type.
+filetype indent on
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
 "if $DISPLAY == "" 
 "	let g:XkbSwitchEnabled = 0
 "else
@@ -129,6 +154,18 @@ let g:airline_symbols.linenr = ''
 "    let g:XkbSwitchLib = 'D:\PortableApps\gVimPortable\Data\libxkbswitch32.dll'
 "	let g:XkbSwitchIMappings = ['ru']
 "endif 
+
+" YouCompleteMe
+" "nnoremap y :YcmForceCompileAndDiagnostics
+" "nnoremap pg :YcmCompleter GoToDefinitionElseDeclaration
+" "nnoremap pd :YcmCompleter GoToDefinition
+" "nnoremap pc :YcmCompleter GoToDeclaration
+" " let g:ycm_auto_trigger = 0
+nnoremap <F5> :YcmRestartServer<CR>
+nnoremap <leader>jj :YcmCompleter GoTo<CR>
+nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>jf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 
 function MyDiff()
   let opt = '-a --binary '
