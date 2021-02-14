@@ -199,3 +199,17 @@ function MyDiff()
     let &shellxquote=l:shxq_sav
   endif
 endfunction
+
+if !has('gui_running')
+	" colorscheme tango
+	colorscheme seoul256
+    let g:seoul256_background = 234
+    let g:airline_powerline_fonts = 0
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline_section_b = ''
+    let g:airline_section_x = ''
+    let g:airline_section_y = ''
+else
+	colorscheme solarized8_flat
+endif
+
