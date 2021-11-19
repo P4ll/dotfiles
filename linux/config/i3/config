@@ -25,14 +25,14 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec sudo light -A 20
+bindsym XF86MonBrightnessDown exec sudo light -U 20
 
 ########################################################### Design
 
 # wallpaper & font
-#exec_always feh --bg-scale "$HOME/images/background.jpg"
-exec_always feh --bg-scale "$HOME/images/back2.jpg"
+exec_always feh --bg-scale "$HOME/images/background.jpg"
+#exec_always feh --bg-scale "$HOME/images/back2.jpg"
 font xft:Roboto:style=Regular:pixelsize=13
 
 # Colors
@@ -107,7 +107,8 @@ set $GAPSBG                 #CCCCCC50
 bindsym $mod+Return exec alacritty -qq
 
 # application manager
-bindsym $mod+space exec rofi -modi drun -show drun -no-plugins
+# bindsym $mod+space exec rofi -modi drun -show drun
+bindsym $mod+space exec rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/blocks/scripts/rofi/launcher.rasi
 
 
 # kill focused window
@@ -197,6 +198,7 @@ mode "$mode_launcher" {
     bindsym c exec code
     bindsym r mode "default"; exec alacritty -qq -e ranger
     bindsym p mode "default"; exec rofi-pass
+    bindsym s mode "default"; exec flameshot gui -p ~/images/prscr
     #bindsym p exec rofi-pass
 
 # Nautilus
@@ -206,7 +208,7 @@ mode "$mode_launcher" {
     bindsym t exec telegram-desktop
 
 # Chromium
-    bindsym b exec chromium
+    bindsym b exec google-chrome-stable
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -230,10 +232,10 @@ set $volume_mode Volume
 bindsym $mod+Shift+v mode "$volume_mode"
 
 mode $volume_mode {
-    bindsym a exec --no-startup-id amixer -D pulse sset Master 5%+
-    bindsym b exec --no-startup-id amixer -D pulse sset Master 5%-
-    bindsym m exec --no-startup-id amixer -D pulse sset Master 0%
-    bindsym u exec --no-startup-id amixer -D pulse sset Master 33%
+    bindsym a exec --no-startup-id amixer sset Master 5%+
+    bindsym b exec --no-startup-id amixer sset Master 5%-
+    bindsym m exec --no-startup-id amixer sset Master 0%
+    bindsym u exec --no-startup-id amixer sset Master 33%
 
     
     bindsym Return mode "default"
@@ -286,6 +288,7 @@ assign [class="discord"] $ws1
 assign [class="telegram-desktop"] $ws1
 assign [class="Code"] $ws2
 assign [class="Chromium"] $ws3
+assign [class="chrome"] $ws3
 assign [class="GitKraken"] $ws6
 assign [class="jetbrains-idea"] $ws9
 assign [class="jetbrains-pycharm"] $ws9
@@ -307,24 +310,25 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i
 ########################################################### Autostart
 #exec_always setxkbmap -layout "us,ru" -option "grp:ctrl_shift_toggle"
 
-exec --no-startup-id setxkbmap -layout us,ru
-exec --no-startup-id setxkbmap -option 'grp:ctrl_shift_toggle'
+#exec --no-startup-id setxkbmap -layout us,ru
+#exec --no-startup-id setxkbmap -option 'grp:ctrl_shift_toggle'
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --blocks
 
 # Vert sync on nvidia
-exec --no-startup-id "nvidia-settings --assign CurrentMetaMode=\"nvidia-auto-select +0+0 { ForceCompositionPipeline = On }\""
+#exec --no-startup-id "nvidia-settings --assign CurrentMetaMode=\"nvidia-auto-select +0+0 { ForceCompositionPipeline = On }\""
 #exec --no-startup-id nvidia-settings --assign CurrentMetaMode=\"nvidia-auto-select +0+0 { ForceCompositionPipeline = On }\"
 
-exec --no-startup-id pasystray
-exec --no-startup-id clipit
+#exec --no-startup-id pasystray
+exec --no-startup-id clipit &
 
 exec --no-startup-id dunst &
 exec --no-startup-id nm-applet &
 exec --no-startup-id owncloud &
 exec --no-startup-id compton --xrender-sync-fence &
 # exec picom --xrender-sync-fence --experimental-backends &
-exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+# exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id redshift &
 exec_always ssh-add ~/.ssh/* >> /dev/null &
 exec --no-startup-id urxvtd -q -o -f &
+exec --no-startup-id blueman-tray &
