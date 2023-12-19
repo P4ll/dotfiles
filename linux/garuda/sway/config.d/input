@@ -10,6 +10,11 @@ input type:touchpad {
       natural_scroll enabled
 }
 
+input type:pointer {
+      accel_profile flat
+      pointer_accel 0
+}
+
 # Read `man 5 sway-input` for more information about this section.
 #
 # input type:keyboard xkb_layout "us"

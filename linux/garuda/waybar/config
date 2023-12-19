@@ -4,8 +4,8 @@
     "height": 30,
     //"width": 1350, // Waybar width
     // Choose the order of the modules idle_inhibitor
-    "modules-left": ["custom/launcher","sway/workspaces", "sway/mode", "sway/window"],
-    "modules-right": ["custom/pacman", "backlight", "custom/keyboard-layout", "cpu", "memory", "battery", "network", "custom/network_traffic", "pulseaudio","tray", "idle_inhibitor", "clock","custom/power"],
+    "modules-left": ["custom/launcher","sway/workspaces", "sway/mode", "sway/window", "custom/media"],
+    "modules-right": ["custom/keyboard-layout", "network", "pulseaudio", "tray", "idle_inhibitor", "clock","custom/power"],
 
  // Modules configuration
 
@@ -43,8 +43,8 @@
     },
     "clock": {
         "tooltip-format": "{:%A %B %d %Y | %H:%M}",
-        "format": " {:%a %d %b  %I:%M %p}",	//12 hour format
-        //"format": " {:%a %d %b  %H:%M}",	//24 hour format
+        // "format": " {:%a %d %b  %I:%M %p}",	//12 hour format
+        "format": " {:%a %d %b  %H:%M}",	//24 hour format
         "format-alt": " {:%d/%m/%Y  %H:%M:%S}",
         //"timezones": [ "Kolkata" ],
         //"max-length": 200
@@ -120,6 +120,11 @@
       	"format":"⏻",
        	"on-click": "nwgbar",
       	"tooltip": false,
+   },
+   "custom/media": {
+        "format": "{}",
+        "interval": 1,
+        "exec": "~/.config/waybar/scripts/get_media.sh"
    },
    "custom/keyboard-layout": {
       	"exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
