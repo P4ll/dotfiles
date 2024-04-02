@@ -1,0 +1,8 @@
+services:
+  'gitlab.k8s.tetrika-school.ru': 'gitlab:gitlab.k8s.tetrika-school.ru'
+os:
+  editPreset: 'helix'
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
