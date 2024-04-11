@@ -1,0 +1,12 @@
+[[language]]
+name = "python"
+roots = ["pyproject.toml"]
+language-servers = ["pyright", "ruff"]
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
+
+[language-server.ruff]
+command = "ruff-lsp"
+config = { settings = { run = "onSave" } }
