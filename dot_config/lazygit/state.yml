@@ -1,8 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/p4l/.local/share/chezmoi
 - /home/p4l/work/application
 - /home/p4l/work/coding_challanges
+- /home/p4l/.local/share/chezmoi
 - /home/p4l/.config/nvim
 - /home/p4l/.password-store
 - /home/p4l/work/tt/dotfiles
