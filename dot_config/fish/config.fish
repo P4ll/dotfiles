@@ -169,6 +169,7 @@ alias rip 'expac --timefmt="%Y-%m-%d %T" "%l\t%n %v" | sort | tail -200 | nl'
 alias lg lazygit
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.nix-profile/bin:$PATH"
 
 zoxide init fish | source
 
