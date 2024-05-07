@@ -1,5 +1,18 @@
+theme = "github_dark_high_contrast"
+
+[editor]
+line-number = "relative"
+auto-format = false
+
+[editor.file-picker]
+hidden = true
+
 [editor.cursor-shape]
 insert = "bar"
 
+[editor.lsp]
+display-inlay-hints	= true
+
 [keys.normal]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+# C-p = [":new", ":insert-output yazi", ":buffer-close!", ":redraw"]

@@ -175,8 +175,8 @@ zoxide init fish | source
 
 nvm use 14.20.0
 
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='hx'
+export VISUAL='hx'
 
 ### Work docker exports
 export WERF_FRONTEND_DOCKER_IMAGE_NAME="application-frontend-1"
@@ -184,6 +184,8 @@ export WERF_FRONTEND_NEXT_DOCKER_IMAGE_NAME="application-frontend_next-1"
 export WERF_BACKEND_DOCKER_IMAGE_NAME="application-backend-1"
 export WERF_LOAD_DUMP_LOCAL_DOCKER_IMAGE_NAME="application-load_dump-1"
 ###
+
+pyenv init - | source
 
 function yy
     set tmp (mktemp -t "yazi-cwd.XXXXX")
