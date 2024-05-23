@@ -1,0 +1,44 @@
+[[manager.prepend_keymap]]
+on   = [ "i" ]
+run  = "plugin keyjump --args=keep"
+desc = "Keyjump (Keep mode)"
+
+[[manager.prepend_keymap]]
+on   = [ "i" ]
+run  = "plugin keyjump"
+desc = "Keyjump (Normal mode)"
+
+[[manager.prepend_keymap]]
+on   = [ "i" ]
+run  = "plugin keyjump --args=select"
+desc = "Keyjump (Select mode)"
+
+[[manager.prepend_keymap]]
+on   = [ "i" ]
+run  = "plugin keyjump --args=global"
+desc = "Keyjump (Global mode)"
+
+[[manager.prepend_keymap]]
+on   = [ "i" ]
+run  = "plugin keyjump --args='global once'"
+desc = "Keyjump (once Global mode)"
+
+[[manager.prepend_keymap]]
+on = [ "m" ]
+run = "plugin bookmarks --args=save"
+desc = "Save current position as a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "'" ]
+run = "plugin bookmarks --args=jump"
+desc = "Jump to a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "b", "d" ]
+run = "plugin bookmarks --args=delete"
+desc = "Delete a bookmark"
+
+[[manager.prepend_keymap]]
+on = [ "b", "D" ]
+run = "plugin bookmarks --args=delete_all"
+desc = "Delete all bookmarks"

@@ -1,7 +1,12 @@
 services:
   'gitlab.k8s.tetrika-school.ru': 'gitlab:gitlab.k8s.tetrika-school.ru'
 os:
-  editPreset: 'helix'
+  # editPreset: 'hx'
+  edit: 'hx {{filename}}'
+  editAtLine: 'hx +{{line}} {{filename}}'
+  editAtLineAndWait: 'hx --block +{{line}} {{filename}}'
+  editInTerminal: true
+  openDirInEditor: 'hx -w {{dir}}'
 git:
   paging:
     colorArg: always
